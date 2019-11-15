@@ -36,12 +36,19 @@ private slots:
 
     void on_dial_2_valueChanged(int value);
 
+    void on_connect_released();
+
+    void on_COMPort_currentTextChanged(const QString &arg1);
+
+    void on_baudRate_currentTextChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     QSerialPort *STM32_UART = nullptr;
     QSerialPortInfo* STM32_UART_INFO = nullptr;
     QTimer* dataTimer = nullptr;
     QTextStream m_standardOutput;
+    void enumerateUARTPorts(void);
 
 
 };

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1210</width>
-    <height>691</height>
+    <height>738</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,10 +20,10 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
+      <x>10</x>
+      <y>10</y>
       <width>1191</width>
-      <height>641</height>
+      <height>661</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -36,9 +36,9 @@
      <widget class="QCustomPlot" name="customPlot" native="true">
       <property name="geometry">
        <rect>
-        <x>210</x>
+        <x>440</x>
         <y>10</y>
-        <width>961</width>
+        <width>731</width>
         <height>591</height>
        </rect>
       </property>
@@ -46,85 +46,242 @@
      <widget class="QLCDNumber" name="lcdNumber">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>400</y>
+        <x>280</x>
+        <y>370</y>
         <width>131</width>
         <height>81</height>
        </rect>
       </property>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QDial" name="dial">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>100</y>
-        <width>121</width>
-        <height>271</height>
+        <x>291</x>
+        <y>71</y>
+        <width>119</width>
+        <height>131</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QDial" name="dial">
-         <property name="minimum">
-          <number>512</number>
-         </property>
-         <property name="maximum">
-          <number>5000</number>
-         </property>
-         <property name="notchesVisible">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QDial" name="dial_2">
-         <property name="minimum">
-          <number>64</number>
-         </property>
-         <property name="maximum">
-          <number>1024</number>
-         </property>
-         <property name="value">
-          <number>1024</number>
-         </property>
-         <property name="invertedAppearance">
-          <bool>true</bool>
-         </property>
-         <property name="invertedControls">
-          <bool>true</bool>
-         </property>
-         <property name="notchesVisible">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <property name="minimum">
+       <number>512</number>
+      </property>
+      <property name="maximum">
+       <number>5000</number>
+      </property>
+      <property name="notchesVisible">
+       <bool>true</bool>
+      </property>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QLabel" name="ADCValue">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>40</y>
-        <width>124</width>
-        <height>18</height>
+        <x>291</x>
+        <y>11</y>
+        <width>60</width>
+        <height>16</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>ADC Value</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <property name="text">
+       <string>ADC Value</string>
+      </property>
+     </widget>
+     <widget class="QDial" name="dial_2">
+      <property name="geometry">
+       <rect>
+        <x>291</x>
+        <y>209</y>
+        <width>119</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>64</number>
+      </property>
+      <property name="maximum">
+       <number>1024</number>
+      </property>
+      <property name="value">
+       <number>1024</number>
+      </property>
+      <property name="invertedAppearance">
+       <bool>true</bool>
+      </property>
+      <property name="invertedControls">
+       <bool>true</bool>
+      </property>
+      <property name="notchesVisible">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>358</x>
+        <y>11</y>
+        <width>55</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="COMPort">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>80</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+      <property name="minimumContentsLength">
+       <number>0</number>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="baudRate">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>130</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="dataBits">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>180</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="parity">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>230</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="stopBits">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>280</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="flowControl">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>330</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="COMPortLabel">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>80</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>COM Port</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="baudRateLabel">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>130</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Baud Rate</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="dataBitsLabel">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>180</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Data Bits</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="parityLabel">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>230</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Parity</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="stopBitsLabel">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>280</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Stop Bits</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="flowControlLabel">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>330</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Flow Control</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="connect">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>390</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Connect</string>
+      </property>
      </widget>
     </widget>
    </widget>

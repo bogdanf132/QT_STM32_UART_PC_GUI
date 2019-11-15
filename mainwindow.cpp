@@ -9,24 +9,50 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
 
+
+    ui->setupUi(this);
+    STM32_UART = new QSerialPort;
+    STM32_UART_INFO = new QSerialPortInfo;
     serialBuffer = "";
     timebase = ui->dial_2->value();
     dataTimer = new QTimer;
     MainWindow::makePlot();
 
-    STM32_UART = new QSerialPort;
-    STM32_UART_INFO = new QSerialPortInfo;
-    STM32_UART->setPortName("COM5");
-    STM32_UART->setBaudRate(QSerialPort::Baud115200);
-    STM32_UART->setDataBits(QSerialPort::Data8);
-    STM32_UART->setParity(QSerialPort::NoParity);
-    STM32_UART->setStopBits((QSerialPort::OneStop));
-    STM32_UART->setFlowControl(QSerialPort::NoFlowControl);
-    STM32_UART->open(QSerialPort::ReadWrite);
-    QObject::connect(STM32_UART, SIGNAL(readyRead()), this, SLOT(readSTM32UARTData()));
+    enumerateUARTPorts();
 
+    ui->baudRate->addItem("1200");
+    ui->baudRate->addItem("2400");
+    ui->baudRate->addItem("4800");
+    ui->baudRate->addItem("9600");
+    ui->baudRate->addItem("14400");
+    ui->baudRate->addItem("19200");
+    ui->baudRate->addItem("38400");
+    ui->baudRate->addItem("57600");
+    ui->baudRate->addItem("115200");
+
+    ui->dataBits->addItem("4");
+    ui->dataBits->addItem("5");
+    ui->dataBits->addItem("6");
+    ui->dataBits->addItem("7");
+    ui->dataBits->addItem("8");
+
+    ui->parity->addItem("None");
+    ui->parity->addItem("Even");
+    ui->parity->addItem("Odd");
+    ui->parity->addItem("Mark");
+    ui->parity->addItem("Space");
+
+    ui->stopBits->addItem("1");
+    ui->stopBits->addItem("1.5");
+    ui->stopBits->addItem("2");
+
+    ui->flowControl->addItem("None");
+    ui->flowControl->addItem("Xon/Xoff");
+    ui->flowControl->addItem("Hardware");
+
+    //QObject::connect(STM32_UART, SIGNAL(readyRead()), this, SLOT(readSTM32UARTData()));
+    connect(STM32_UART, SIGNAL(readyRead()), this, SLOT(readSTM32UARTData()));
 }
 
 MainWindow::~MainWindow()
@@ -97,4 +123,55 @@ void MainWindow::on_dial_valueChanged(int value)
 void MainWindow::on_dial_2_valueChanged(int value)
 {
     timebase = value;
+}
+
+void MainWindow::enumerateUARTPorts(void)
+{
+    ui->COMPort->addItem("COM5");
+    ui->COMPort->addItem("COM8");
+}
+
+void MainWindow::on_connect_released()
+{
+    STM32_UART->setPortName("COM8");
+
+
+    STM32_UART->setBaudRate(QSerialPort::Baud115200);
+    STM32_UART->setDataBits(QSerialPort::Data8);
+    STM32_UART->setParity(QSerialPort::NoParity);
+    STM32_UART->setStopBits((QSerialPort::OneStop));
+    STM32_UART->setFlowControl(QSerialPort::NoFlowControl);
+    STM32_UART->open(QSerialPort::ReadWrite);
+
+}
+
+void MainWindow::on_COMPort_currentTextChanged(const QString &arg1)
+{
+
+
+}
+
+void MainWindow::on_baudRate_currentTextChanged(const QString &arg1)
+{
+    //QString baudRateOption = ui->baudRate->currentText();
+    qDebug() << "execution reached 1";
+    switch(arg1.toInt())
+    {
+    case 1200:
+        qDebug() << "execution reached 2";
+        STM32_UART->setBaudRate(QSerialPort::Baud1200);
+        qDebug() << "execution reached 3";
+        break;
+
+    case 2400:
+        qDebug() << "execution reached 4";
+        STM32_UART->setBaudRate(QSerialPort::Baud2400);
+        qDebug() << "execution reached 5";
+        break;
+
+    default:
+        qDebug() << "execution reached 6";
+        break;
+
+    }
 }
