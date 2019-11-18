@@ -42,6 +42,18 @@ private slots:
 
     void on_baudRate_currentTextChanged(const QString &arg1);
 
+    void on_dataBits_currentTextChanged(const QString &arg1);
+
+    void on_parity_currentTextChanged(const QString &arg1);
+
+    void on_stopBits_currentTextChanged(const QString &arg1);
+
+    void on_checkBox_stateChanged(int arg1);
+
+    void on_flowControl_currentTextChanged(const QString &arg1);
+
+    void on_disconnect_released();
+
 private:
     Ui::MainWindow *ui;
     QSerialPort *STM32_UART = nullptr;

@@ -273,7 +273,7 @@
      <widget class="QPushButton" name="connect">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>40</x>
         <y>390</y>
         <width>80</width>
         <height>25</height>
@@ -282,6 +282,64 @@
       <property name="text">
        <string>Connect</string>
       </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>480</y>
+        <width>83</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>CheckBox</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="disconnect">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>430</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>disconnect</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="COMStateBox">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>370</y>
+        <width>120</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>COM State</string>
+      </property>
+      <widget class="QLabel" name="COMStateLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Closed</string>
+       </property>
+       <property name="scaledContents">
+        <bool>false</bool>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>

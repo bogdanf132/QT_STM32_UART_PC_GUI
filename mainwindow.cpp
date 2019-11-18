@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QSerialPort>
 #include <QSerialPortInfo>
+#include <qserialport.h>
 #include <QDebug>
 #include <QTimer>
 
@@ -9,8 +10,6 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
-
     ui->setupUi(this);
     STM32_UART = new QSerialPort;
     STM32_UART_INFO = new QSerialPortInfo;
@@ -51,8 +50,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->flowControl->addItem("Xon/Xoff");
     ui->flowControl->addItem("Hardware");
 
-    //QObject::connect(STM32_UART, SIGNAL(readyRead()), this, SLOT(readSTM32UARTData()));
-    connect(STM32_UART, SIGNAL(readyRead()), this, SLOT(readSTM32UARTData()));
+    QObject::connect(STM32_UART, SIGNAL(readyRead()), this, SLOT(readSTM32UARTData()));
+    //connect(STM32_UART, SIGNAL(readyRead()), this, SLOT(readSTM32UARTData()));
 }
 
 MainWindow::~MainWindow()
@@ -133,45 +132,64 @@ void MainWindow::enumerateUARTPorts(void)
 
 void MainWindow::on_connect_released()
 {
-    STM32_UART->setPortName("COM8");
 
-
-    STM32_UART->setBaudRate(QSerialPort::Baud115200);
-    STM32_UART->setDataBits(QSerialPort::Data8);
-    STM32_UART->setParity(QSerialPort::NoParity);
-    STM32_UART->setStopBits((QSerialPort::OneStop));
-    STM32_UART->setFlowControl(QSerialPort::NoFlowControl);
     STM32_UART->open(QSerialPort::ReadWrite);
-
+    if (STM32_UART->isOpen())
+    {
+        ui->COMStateLabel->setText("COM opened");
+    }
+    else
+    {
+        ui->COMStateLabel->setText("Error openning COM port");
+    }
 }
 
 void MainWindow::on_COMPort_currentTextChanged(const QString &arg1)
 {
-
-
+        STM32_UART->setPortName("COM9");
 }
 
 void MainWindow::on_baudRate_currentTextChanged(const QString &arg1)
 {
-    //QString baudRateOption = ui->baudRate->currentText();
-    qDebug() << "execution reached 1";
-    switch(arg1.toInt())
+    STM32_UART->setBaudRate(arg1.toInt());
+    //STM32_UART->setBaudRate(QSerialPort::Baud115200);
+}
+
+void MainWindow::on_dataBits_currentTextChanged(const QString &arg1)
+{
+    STM32_UART->setDataBits(QSerialPort::Data8);
+}
+
+void MainWindow::on_parity_currentTextChanged(const QString &arg1)
+{
+    STM32_UART->setParity(QSerialPort::NoParity);
+
+}
+
+void MainWindow::on_stopBits_currentTextChanged(const QString &arg1)
+{
+     STM32_UART->setStopBits((QSerialPort::OneStop));
+}
+
+void MainWindow::on_checkBox_stateChanged(int arg1)
+{
+
+}
+
+void MainWindow::on_flowControl_currentTextChanged(const QString &arg1)
+{
+        STM32_UART->setFlowControl(QSerialPort::NoFlowControl);
+}
+
+void MainWindow::on_disconnect_released()
+{
+    if (STM32_UART->isOpen())
     {
-    case 1200:
-        qDebug() << "execution reached 2";
-        STM32_UART->setBaudRate(QSerialPort::Baud1200);
-        qDebug() << "execution reached 3";
-        break;
-
-    case 2400:
-        qDebug() << "execution reached 4";
-        STM32_UART->setBaudRate(QSerialPort::Baud2400);
-        qDebug() << "execution reached 5";
-        break;
-
-    default:
-        qDebug() << "execution reached 6";
-        break;
-
+        STM32_UART->close();
+        ui->COMStateLabel->setText("COM closed");
+    }
+    else
+    {
+        ui->COMStateLabel->setText("Nothing to close");
     }
 }
