@@ -10,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+
+
+jhjhjhl
     ui->setupUi(this);
     STM32_UART = new QSerialPort;
     STM32_UART_INFO = new QSerialPortInfo;
